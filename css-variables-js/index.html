@@ -5,7 +5,7 @@
   <title>Scoped CSS Variables and JS</title>
 </head>
 <body>
-  <h3>Update CSS Variables with <span class='hl'>JS</span></h3>
+  <h3>Update <span class='hl'>CSS</span> Variables with <span class='hl'>JS</span></h3>
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
@@ -59,15 +59,16 @@
     const controls = document.querySelectorAll('.controls input');
     
     function handleUpdate() {
+      // Access DATASET (the object that contains all the data attributes of the element)
+      // and access the units value of dataset, needs to have || '' for color to not return 'undefined'
       const suffix = this.dataset.units || '';
-      
-      console.log(suffix);
-      // console.log(this.value);
+
+      // Define a style property declaration on the whole documentElement: (html)
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     }
 
     controls.forEach(input => input.addEventListener('change', handleUpdate));
     controls.forEach(input => input.addEventListener('mousemove', handleUpdate));
-    console.log(controls);
   </script>
 
 </body>
